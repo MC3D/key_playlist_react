@@ -35,8 +35,15 @@ class App extends Component {
     });
   }
 
-  _addToList(listItem) {
-    listItem = JSON.stringify(listItem);
+  _addToList(event) {
+    event.preventDefault();
+
+    let listItem = JSON.stringify({
+        userName: event.target.userName.value,
+        songTitle: event.target.songTitle.value,
+        songArtist: event.target.songArtist.value,
+        songNotes: event.target.songNotes.value
+    });
 
     fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
       method: "POST",

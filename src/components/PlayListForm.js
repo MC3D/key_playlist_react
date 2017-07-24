@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 
-export default class PlayListForm extends Component {
-  constructor(props) {
-    super(props);
-    this._addToList = this._addToList.bind(this);
-  }
-
-  _addToList(event) {
-    event.preventDefault();
-    this.props.addToList({
-        userName: event.target.userName.value,
-        songTitle: event.target.songTitle.value,
-        songArtist: event.target.songArtist.value,
-        songNotes: event.target.songNotes.value
-    });
-  }
-
-  render() {
+export default function PlayListForm(props) {
     return (
-      <form className='col-md-6' onSubmit={ this._addToList }>
+      <form className='col-md-6' onSubmit={ (event) => props.addToList(event) }>
         <div className="form-group">
           <label htmlFor="userName">User Name</label>
           <input type="text" className="form-control" id="userName" placeholder="Name or User Name" name='userName' />
@@ -38,5 +22,4 @@ export default class PlayListForm extends Component {
         <input type='submit' value='Submit' />
       </form>
     )
-  }
 }
