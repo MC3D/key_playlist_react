@@ -8,28 +8,13 @@ export default class PlayListForm extends Component {
 
   _addToList(event) {
     event.preventDefault();
-    let listItem = JSON.stringify({
-      userName: event.target.userName.value,
-      songTitle: event.target.songTitle.value,
-      songArtist: event.target.songArtist.value,
-      songNotes: event.target.songNotes.value
+    this.props.addToList({
+        userName: event.target.userName.value,
+        songTitle: event.target.songTitle.value,
+        songArtist: event.target.songArtist.value,
+        songNotes: event.target.songNotes.value
     });
-
-    fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
-      method: "POST",
-      body: listItem,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }
-    ).then(response => {
-      console.log(response, "yay");
-
-    }).catch(err => {
-      console.log(err, "boo!");
-    });
-  } 
+  }
 
   render() {
     return (
